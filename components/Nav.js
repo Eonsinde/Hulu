@@ -1,6 +1,5 @@
 import requests from '../utils/requests'
 import { useRouter } from 'next/router'
-import Router from 'next/dist/server/router';
 
 const Nav = () => {
     const router = useRouter();
@@ -8,17 +7,18 @@ const Nav = () => {
     return (
         <nav className="relative">
             <div className="flex px-100 sm:px-20 text-2xl whitespace-nowrap space-x-10 sm:space-x-20 overflow-x-scroll scrollbar-hide">
-            { 
-                Object.entries(requests).map(([key, { title, url }], index) => (
-                    <h2 
-                        key={index}  
-                        onClick={() => router.push(`/?genre=${title}`)}
-                        className="last:pr-24 cursor-pointer transition duration-100 transform hover:scale-125 hover:text-white active:text-red-500"
-                    >
+                { 
+                    Object.entries(requests).map(([key, { title, url }], index) => (
+                        <h2 
+                            key={index}  
+                            onClick={() => router.push(`/?genre=${key}`)}
+                            className="last:pr-24 cursor-pointer transition duration-100 transform hover:scale-125 hover:text-white active:text-red-500"
+                        >
                             {title}
-                    </h2>
-            )) }
+                        </h2>
+                )) }
             </div>
+            {/* this is used to create a fade out illusion for the nav items */}
             <div className="absolute top-0 right-0 bg-gradient-to-l from-[#06202A] h-10 w-1/12" />
         </nav>
     ); 
